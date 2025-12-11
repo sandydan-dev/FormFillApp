@@ -84,7 +84,7 @@
     <!-- Celebration -->
     <div id="celebrate">🎉🎈 Registration Successful 🎈🎉</div>
 
-    <h2>Premium Registration !!</h2>
+    <h2>Premium/Golden Registration</h2>
 
     <!-- Profile Image -->
     <div class="text-center">
