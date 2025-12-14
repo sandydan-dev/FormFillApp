@@ -91,9 +91,7 @@
         <img id="preview" src="https://via.placeholder.com/90" class="rounded-circle border border-warning mb-3" width="90" height="90">
     </div>
 
-    <div class="mb-3 text-center">
-        <input type="file" placeholder="add image" class="form-control" accept="image/*" onchange="previewImage(event)">
-    </div>
+   
 
     <form method="post" onsubmit="showCelebration(event)">
 
