@@ -113,6 +113,7 @@
                 <option>Male</option>
                 <option>Female</option>
                 <option>Other</option>
+		<option>Trans</option>
             </select>
         </div>
 
