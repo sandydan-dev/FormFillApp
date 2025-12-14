@@ -92,7 +92,7 @@
     </div>
 
     <div class="mb-3 text-center">
-        <input type="file" class="form-control" accept="image/*" onchange="previewImage(event)">
+        <input type="file" placeholder="add image" class="form-control" accept="image/*" onchange="previewImage(event)">
     </div>
 
     <form method="post" onsubmit="showCelebration(event)">
