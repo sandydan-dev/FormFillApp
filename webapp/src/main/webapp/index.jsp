@@ -1,235 +1,328 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<title>DevOps Home</title>
+<title>Sandeep Dhanwate | Cloud & DevOps Engineer</title>
 
-<!-- Google Font -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
 <style>
-/* ================== GLOBAL ================== */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/* ================= THEME ================= */
+:root{
+--bg:#020617;
+--card:rgba(255,255,255,0.08);
+--text:#ffffff;
+--accent:#00eaff;
+--glow:0 0 25px rgba(0,234,255,.4);
+}
+.light{
+--bg:#f4f7fb;
+--card:rgba(255,255,255,0.7);
+--text:#020617;
+--accent:#005eff;
 }
 
-body {
-    font-family: 'Poppins', sans-serif;
-    height: 100vh;
-    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-    color: #fff;
-    overflow: hidden;
+/* ================= BASE ================= */
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+font-family:Poppins,sans-serif;
+background:linear-gradient(120deg,#020617,#061a2f,#020617);
+background-size:400% 400%;
+animation:bgMove 18s ease infinite;
+color:var(--text);
+overflow-x:hidden;
+transition:.4s;
+}
+@keyframes bgMove{
+50%{background-position:100% 50%}
 }
 
-/* ================== NAVBAR ================== */
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    padding: 20px 60px;
-    position: relative;
-    z-index: 10;
+/* ================= HEADER ================= */
+header{
+position:fixed;
+top:0;
+width:100%;
+padding:18px 70px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:var(--card);
+backdrop-filter:blur(14px);
+z-index:100;
+}
+.logo{
+font-size:22px;
+font-weight:700;
+color:var(--accent);
+text-shadow:var(--glow);
+}
+nav a{
+margin-left:26px;
+color:var(--text);
+text-decoration:none;
+opacity:.7;
+font-size:15px;
+}
+nav a.active,nav a:hover{
+opacity:1;
+color:var(--accent);
+}
+.toggle{cursor:pointer}
+
+/* ================= SECTIONS ================= */
+section{
+padding:120px 80px;
+opacity:0;
+transform:translateY(60px);
+transition:1s;
+}
+section.show{opacity:1;transform:none}
+h2{
+text-align:center;
+margin-bottom:35px;
+font-size:38px;
+}
+.divider{
+width:90px;
+height:4px;
+background:var(--accent);
+margin:10px auto 40px;
+box-shadow:var(--glow);
+border-radius:10px;
 }
 
-.logo {
-    font-size: 24px;
-    font-weight: 700;
-    letter-spacing: 1px;
+/* ================= HERO ================= */
+#home{
+min-height:100vh;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding-top:160px;
+}
+.hero-left{width:48%}
+.hero-left h1{
+font-size:54px;
+}
+.hero-left span{color:var(--accent)}
+.hero-left p{
+margin:20px 0;
+font-size:18px;
+opacity:.85;
+}
+.type{
+color:var(--accent);
+font-weight:500;
 }
 
-.nav-links a {
-    margin-left: 30px;
-    text-decoration: none;
-    color: #fff;
-    font-weight: 400;
-    transition: 0.3s;
+/* ================= PIPELINE ================= */
+.hero-right{width:45%}
+.pipeline{
+display:flex;
+flex-direction:column;
+align-items:center;
+}
+.stage{
+width:100%;
+padding:18px;
+margin:10px 0;
+background:var(--card);
+border-radius:18px;
+backdrop-filter:blur(14px);
+box-shadow:0 0 25px rgba(0,234,255,.18);
+position:relative;
+overflow:hidden;
+animation:float 4s ease-in-out infinite;
+}
+.stage::after{
+content:"";
+position:absolute;
+left:-30%;
+top:0;
+width:30%;
+height:100%;
+background:linear-gradient(120deg,transparent,var(--accent),transparent);
+animation:scan 3s linear infinite;
+opacity:.25;
+}
+@keyframes scan{to{left:130%}}
+.stage:nth-child(even){animation-delay:2s}
+@keyframes float{50%{transform:translateY(-10px)}}
+
+/* ================= CARD ================= */
+.card{
+max-width:900px;
+margin:auto;
+background:var(--card);
+padding:45px;
+border-radius:25px;
+backdrop-filter:blur(14px);
 }
 
-.nav-links a:hover {
-    color: #00eaff;
+/* ================= TOOLS ================= */
+.tools{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:25px;
+}
+.tool{
+background:var(--card);
+padding:25px;
+border-radius:18px;
+transition:.4s;
+}
+.tool:hover{
+transform:translateY(-12px);
+background:rgba(0,234,255,.15);
+box-shadow:var(--glow);
 }
 
-/* ================== HERO ================== */
-.hero {
-    display: flex;
-    height: calc(100vh - 80px);
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 80px;
+/* ================= FOOTER ================= */
+footer{
+padding:45px;
+text-align:center;
+background:var(--card);
+}
+footer a{
+color:var(--accent);
+text-decoration:none;
+margin:0 12px;
+font-weight:500;
 }
 
-.hero-text {
-    max-width: 550px;
-    animation: slideIn 1.2s ease-out;
-}
-
-.hero-text h1 {
-    font-size: 52px;
-    font-weight: 700;
-}
-
-.hero-text h1 span {
-    color: #00eaff;
-}
-
-.hero-text p {
-    margin-top: 20px;
-    font-size: 18px;
-    line-height: 1.6;
-    opacity: 0.9;
-}
-
-.hero-text button {
-    margin-top: 30px;
-    padding: 14px 32px;
-    border: none;
-    background: #00eaff;
-    color: #000;
-    font-size: 16px;
-    font-weight: 600;
-    border-radius: 30px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.hero-text button:hover {
-    transform: scale(1.1);
-}
-
-/* ================== ANIMATED OBJECTS ================== */
-.animation-area {
-    position: relative;
-    width: 400px;
-    height: 400px;
-}
-
-/* Bouncing Ball */
-.ball {
-    width: 80px;
-    height: 80px;
-    background: radial-gradient(circle, #00eaff, #005f6a);
-    border-radius: 50%;
-    position: absolute;
-    bottom: 0;
-    animation: bounce 2s infinite ease-in-out;
-}
-
-/* Floating Cube */
-.cube {
-    width: 120px;
-    height: 120px;
-    background: linear-gradient(45deg, #ff6a00, #ffcc00);
-    position: absolute;
-    top: 50px;
-    right: 0;
-    animation: float 4s infinite ease-in-out;
-}
-
-/* Rotating Ring */
-.ring {
-    width: 160px;
-    height: 160px;
-    border: 6px solid #00eaff;
-    border-radius: 50%;
-    position: absolute;
-    top: 200px;
-    left: 80px;
-    animation: rotate 6s linear infinite;
-}
-
-/* ================== KEYFRAMES ================== */
-@keyframes bounce {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-180px);
-    }
-}
-
-@keyframes float {
-    0% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(40px);
-    }
-    100% {
-        transform: translateY(0);
-    }
-}
-
-@keyframes rotate {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-@keyframes slideIn {
-    from {
-        opacity: 0;
-        transform: translateX(-80px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-/* ================== FOOTER ================== */
-.footer {
-    position: absolute;
-    bottom: 20px;
-    width: 100%;
-    text-align: center;
-    font-size: 14px;
-    opacity: 0.7;
+/* ================= RESPONSIVE ================= */
+@media(max-width:900px){
+#home{flex-direction:column;text-align:center}
+.hero-left,.hero-right{width:100%}
 }
 </style>
 </head>
 
 <body>
 
-<!-- NAVBAR -->
-<div class="navbar">
-    <div class="logo">DevOpsHub</div>
-    <div class="nav-links">
-        <a href="#">Home</a>
-        <a href="#">Projects</a>
-        <a href="#">CI/CD</a>
-        <a href="#">Contact</a>
-    </div>
+<header>
+<div class="logo">SD</div>
+<nav>
+<a href="#home" class="active">Home</a>
+<a href="#about">About</a>
+<a href="#project">Projects</a>
+<a href="#tools">DevOps Tools</a>
+<a href="#contact">Contact</a>
+</nav>
+<div class="toggle" onclick="toggleTheme()">🌗</div>
+</header>
+
+<!-- HERO -->
+<section id="home" class="show">
+<div class="hero-left">
+<h1>Sandeep <span>Dhanwate</span></h1>
+<p class="type" id="typing"></p>
+<p>
+Cloud & DevOps Engineer focused on building reliable,
+automated CI/CD pipelines and scalable cloud infrastructure.
+</p>
 </div>
 
-<!-- HERO SECTION -->
-<div class="hero">
-    <div class="hero-text">
-        <h1>Build. Deploy. <span>Automate.</span></h1>
-        <p>
-            A modern DevOps platform integrating CI/CD pipelines, cloud automation,
-            container orchestration, and monitoring — all in one place.
-        </p>
-        <button>Get Started</button>
-    </div>
-
-    <!-- ANIMATION AREA -->
-    <div class="animation-area">
-        <div class="ball"></div>
-        <div class="cube"></div>
-        <div class="ring"></div>
-    </div>
+<div class="hero-right">
+<div class="pipeline">
+<div class="stage">📁 Git – Source Control</div>
+<div class="stage">⚙️ Jenkins – CI Automation</div>
+<div class="stage">🔧 Maven & SonarQube – Build & Quality</div>
+<div class="stage">🐳 Docker – Containerization</div>
+<div class="stage">☸️ Kubernetes – Orchestration</div>
 </div>
-
-<!-- FOOTER -->
-<div class="footer">
-    © 2025 DevOpsHub | Powered by JSP & Tomcat
 </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+<h2>About Me</h2>
+<div class="divider"></div>
+<div class="card">
+Fresher to intermediate Cloud & DevOps Engineer with strong hands-on
+experience in CI/CD automation, Infrastructure as Code, monitoring,
+and DevSecOps practices. I believe in automation-first engineering.
+</div>
+</section>
+
+<!-- PROJECT -->
+<section id="project">
+<h2>Project Experience</h2>
+<div class="divider"></div>
+<div class="card">
+<b>End-to-End CI/CD Automation on Cloud</b><br><br>
+• Fully automated pipeline from code commit to Kubernetes deployment<br>
+• Jenkins integrated with Maven, SonarQube, Docker & JFrog<br>
+• Infrastructure provisioned using Terraform & Ansible<br>
+• Observability using Prometheus & Grafana
+</div>
+</section>
+
+<!-- TOOLS -->
+<section id="tools">
+<h2>DevOps Tools</h2>
+<div class="divider"></div>
+<div class="tools">
+<div class="tool"><b>Linux & Shell</b><br>Automation & system management</div>
+<div class="tool"><b>AWS & Azure</b><br>Cloud infrastructure & services</div>
+<div class="tool"><b>Git & Jenkins</b><br>CI/CD pipeline automation</div>
+<div class="tool"><b>Docker & Kubernetes</b><br>Containerization & orchestration</div>
+<div class="tool"><b>Terraform & Ansible</b><br>Infrastructure as Code</div>
+<div class="tool"><b>Prometheus & Grafana</b><br>Monitoring & observability</div>
+</div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+<h2>Contact</h2>
+<div class="divider"></div>
+<div class="card" style="text-align:center">
+<p>Email: sandydan.dev@gmail.com</p><br>
+<a href="https://github.com/sandydan-dev" target="_blank">GitHub</a> |
+<a href="https://www.linkedin.com/in/sandeep-dhanwate-2841332b8" target="_blank">LinkedIn</a> |
+<a href="resume.pdf">Download Resume</a>
+</div>
+</section>
+
+<footer>
+© 2025 Sandeep Dhanwate • Cloud & DevOps Engineer • Automation First
+</footer>
+
+<script>
+/* Typing effect */
+const text="Cloud & DevOps Engineer | CI/CD • Cloud • Kubernetes";
+let i=0;
+setInterval(()=>{
+document.getElementById("typing").innerText=text.slice(0,i++);
+if(i>text.length)i=0;
+},120);
+
+/* Scroll reveal */
+const sections=document.querySelectorAll("section");
+window.addEventListener("scroll",()=>{
+sections.forEach(sec=>{
+if(sec.getBoundingClientRect().top<window.innerHeight-120){
+sec.classList.add("show");
+}
+});
+});
+
+/* Active menu */
+const links=document.querySelectorAll("nav a");
+window.addEventListener("scroll",()=>{
+sections.forEach((sec,i)=>{
+if(sec.offsetTop-150<=scrollY){
+links.forEach(l=>l.classList.remove("active"));
+links[i].classList.add("active");
+}
+});
+});
+
+/* Theme toggle */
+function toggleTheme(){
+document.body.classList.toggle("light");
+}
+</script>
 
 </body>
 </html>
