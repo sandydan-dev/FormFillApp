@@ -1,194 +1,74 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<title>DevOps Home</title>
-
-<!-- Google Font -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<title>DevOps Hub | Home</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
 <style>
-/* ================== GLOBAL ================== */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 body {
-    font-family: 'Poppins', sans-serif;
-    height: 100vh;
-    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    margin: 0;
+    font-family: Poppins, sans-serif;
+    background: linear-gradient(135deg,#0f2027,#203a43,#2c5364);
     color: #fff;
-    overflow: hidden;
+    overflow-x: hidden;
 }
 
-/* ================== NAVBAR ================== */
-.navbar {
+/* NAVBAR */
+.nav {
     display: flex;
     justify-content: space-between;
     padding: 20px 60px;
-    position: relative;
-    z-index: 10;
 }
-
-.logo {
-    font-size: 24px;
-    font-weight: 700;
-    letter-spacing: 1px;
-}
-
-.nav-links a {
-    margin-left: 30px;
-    text-decoration: none;
+.nav a {
     color: #fff;
-    font-weight: 400;
-    transition: 0.3s;
+    text-decoration: none;
+    margin-left: 25px;
 }
+.nav a:hover { color: #00eaff; }
 
-.nav-links a:hover {
-    color: #00eaff;
-}
-
-/* ================== HERO ================== */
+/* HERO */
 .hero {
-    display: flex;
-    height: calc(100vh - 80px);
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 80px;
-}
-
-.hero-text {
-    max-width: 550px;
-    animation: slideIn 1.2s ease-out;
-}
-
-.hero-text h1 {
-    font-size: 52px;
-    font-weight: 700;
-}
-
-.hero-text h1 span {
-    color: #00eaff;
-}
-
-.hero-text p {
-    margin-top: 20px;
-    font-size: 18px;
-    line-height: 1.6;
-    opacity: 0.9;
-}
-
-.hero-text button {
-    margin-top: 30px;
-    padding: 14px 32px;
-    border: none;
-    background: #00eaff;
-    color: #000;
-    font-size: 16px;
-    font-weight: 600;
-    border-radius: 30px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.hero-text button:hover {
-    transform: scale(1.1);
-}
-
-/* ================== ANIMATED OBJECTS ================== */
-.animation-area {
-    position: relative;
-    width: 400px;
-    height: 400px;
-}
-
-/* Bouncing Ball */
-.ball {
-    width: 80px;
-    height: 80px;
-    background: radial-gradient(circle, #00eaff, #005f6a);
-    border-radius: 50%;
-    position: absolute;
-    bottom: 0;
-    animation: bounce 2s infinite ease-in-out;
-}
-
-/* Floating Cube */
-.cube {
-    width: 120px;
-    height: 120px;
-    background: linear-gradient(45deg, #ff6a00, #ffcc00);
-    position: absolute;
-    top: 50px;
-    right: 0;
-    animation: float 4s infinite ease-in-out;
-}
-
-/* Rotating Ring */
-.ring {
-    width: 160px;
-    height: 160px;
-    border: 6px solid #00eaff;
-    border-radius: 50%;
-    position: absolute;
-    top: 200px;
-    left: 80px;
-    animation: rotate 6s linear infinite;
-}
-
-/* ================== KEYFRAMES ================== */
-@keyframes bounce {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-180px);
-    }
-}
-
-@keyframes float {
-    0% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(40px);
-    }
-    100% {
-        transform: translateY(0);
-    }
-}
-
-@keyframes rotate {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-@keyframes slideIn {
-    from {
-        opacity: 0;
-        transform: translateX(-80px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-/* ================== FOOTER ================== */
-.footer {
-    position: absolute;
-    bottom: 20px;
-    width: 100%;
     text-align: center;
-    font-size: 14px;
+    padding: 80px 20px;
+    animation: fadeIn 1.5s ease;
+}
+.hero h1 span { color: #00eaff; }
+
+/* CARDS */
+.cards {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 60px;
+}
+.card {
+    width: 250px;
+    padding: 30px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 20px;
+    text-align: center;
+    transition: 0.4s;
+    animation: float 4s infinite;
+}
+.card:hover {
+    transform: translateY(-20px) scale(1.05);
+    background: rgba(0,234,255,0.2);
+}
+
+/* ANIMATIONS */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+@keyframes float {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(15px); }
+}
+
+.footer {
+    margin-top: 80px;
+    text-align: center;
     opacity: 0.7;
 }
 </style>
@@ -196,39 +76,38 @@ body {
 
 <body>
 
-<!-- NAVBAR -->
-<div class="navbar">
-    <div class="logo">DevOpsHub</div>
-    <div class="nav-links">
-        <a href="#">Home</a>
-        <a href="#">Projects</a>
-        <a href="#">CI/CD</a>
-        <a href="#">Contact</a>
+<div class="nav">
+    <h2>DevOpsHub</h2>
+    <div>
+        <a href="index.jsp">Home</a>
+        <a href="tools.jsp">Tools</a>
+        <a href="cicd.jsp">CI/CD</a>
+        <a href="contact.jsp">Contact</a>
     </div>
 </div>
 
-<!-- HERO SECTION -->
 <div class="hero">
-    <div class="hero-text">
-        <h1>Build. Deploy. <span>Automate.</span></h1>
-        <p>
-            A modern DevOps platform integrating CI/CD pipelines, cloud automation,
-            container orchestration, and monitoring — all in one place.
-        </p>
-        <button>Get Started</button>
-    </div>
+    <h1>Automate Everything with <span>DevOps</span></h1>
+    <p>CI/CD • Cloud • Containers • Monitoring • Security</p>
+</div>
 
-    <!-- ANIMATION AREA -->
-    <div class="animation-area">
-        <div class="ball"></div>
-        <div class="cube"></div>
-        <div class="ring"></div>
+<div class="cards">
+    <div class="card">
+        <h3>CI/CD</h3>
+        <p>Automated build, test & deploy pipelines.</p>
+    </div>
+    <div class="card">
+        <h3>Containers</h3>
+        <p>Docker & Kubernetes based deployments.</p>
+    </div>
+    <div class="card">
+        <h3>Cloud</h3>
+        <p>AWS infrastructure automation.</p>
     </div>
 </div>
 
-<!-- FOOTER -->
 <div class="footer">
-    © 2025 DevOpsHub | Powered by JSP & Tomcat
+    © 2025 DevOpsHub | JSP & Tomcat
 </div>
 
 </body>
