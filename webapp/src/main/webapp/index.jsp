@@ -7,7 +7,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
 <style>
-/* ================= THEME ================= */
 :root{
 --bg:#020617;
 --card:rgba(255,255,255,0.08);
@@ -71,7 +70,7 @@ padding:160px 80px 80px;
 
 /* ================= SPACE SYSTEM ================= */
 .hero-right{
-width:45%;
+width:50%;
 display:flex;
 justify-content:center;
 align-items:center;
@@ -100,17 +99,17 @@ animation:rotateEarth 25s linear infinite;
 to{transform:translate(-50%,-50%) rotate(360deg)}
 }
 
-/* Cloud regions */
-.region{
+/* Cloud provider labels */
+.cloud{
 position:absolute;
-width:8px;height:8px;
-background:var(--accent);
-border-radius:50%;
-box-shadow:0 0 12px var(--accent);
+font-size:12px;
+font-weight:700;
+color:#00eaff;
+text-shadow:0 0 10px rgba(0,234,255,.8);
 }
-.r1{top:45%;left:60%}
-.r2{top:55%;left:40%}
-.r3{top:35%;left:50%}
+.aws{top:35%;left:60%}
+.azure{top:55%;left:35%}
+.gcp{top:45%;left:45%}
 
 /* Orbits */
 .orbit{
@@ -127,21 +126,22 @@ transform:translate(-50%,-50%);
 to{transform:translate(-50%,-50%) rotate(360deg)}
 }
 
-/* Satellites */
-.satellite{
-width:22px;height:22px;
-background:var(--accent);
-border-radius:6px;
+/* Satellites / Tool nodes */
+.tool{
+width:28px;height:28px;
+background:linear-gradient(135deg,#00eaff,#0077ff);
+border-radius:50%;
 position:absolute;
-top:-12px;left:50%;
+top:-14px;left:50%;
 transform:translateX(-50%);
-box-shadow:0 0 15px var(--accent);
-font-size:10px;
+box-shadow:0 0 18px rgba(0,234,255,.9);
 display:flex;
 align-items:center;
 justify-content:center;
-color:#000;
+font-size:8px;
 font-weight:700;
+color:#001;
+text-align:center;
 }
 
 /* ================= TERMINAL ================= */
@@ -235,14 +235,34 @@ $ kubectl rollout status deploy/app<br>
 <div class="hero-right">
 <div class="space">
 <div class="earth">
-<div class="region r1"></div>
-<div class="region r2"></div>
-<div class="region r3"></div>
+<div class="cloud aws">AWS</div>
+<div class="cloud azure">AZURE</div>
+<div class="cloud gcp">GCP</div>
 </div>
 
-<div class="orbit o1"><div class="satellite">CI</div></div>
-<div class="orbit o2"><div class="satellite">CD</div></div>
-<div class="orbit o3"><div class="satellite">MON</div></div>
+<!-- CI/CD Orbit -->
+<div class="orbit o1">
+<div class="tool">GIT</div>
+<div class="tool" style="transform:translateX(-50%) rotate(45deg);">JENKINS</div>
+<div class="tool" style="transform:translateX(-50%) rotate(90deg);">GITLAB</div>
+</div>
+
+<!-- IaC / Containers -->
+<div class="orbit o2">
+<div class="tool">TERRAFORM</div>
+<div class="tool" style="transform:translateX(-50%) rotate(60deg);">DOCKER</div>
+<div class="tool" style="transform:translateX(-50%) rotate(120deg);">K8S</div>
+<div class="tool" style="transform:translateX(-50%) rotate(180deg);">ANSIBLE</div>
+</div>
+
+<!-- Monitoring / DevSecOps -->
+<div class="orbit o3">
+<div class="tool">PROM</div>
+<div class="tool" style="transform:translateX(-50%) rotate(60deg);">GRAFANA</div>
+<div class="tool" style="transform:translateX(-50%) rotate(120deg);">SONAR</div>
+<div class="tool" style="transform:translateX(-50%) rotate(180deg);">TRIVY</div>
+</div>
+
 </div>
 </div>
 </section>
