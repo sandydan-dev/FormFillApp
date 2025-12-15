@@ -1,104 +1,236 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Sandeep Dhanwate | DevOps Engineer</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r150/three.min.js"></script>
+<title>DevOps Home</title>
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
 <style>
-body { margin:0; overflow:hidden; background:#0b0c1f; }
-#earthContainer { width: 100vw; height: 100vh; display:block; }
-.info {
-  position:absolute; top:20px; left:20px; color:#fff;
-  font-family:Poppins,sans-serif; z-index:10;
+/* ================== GLOBAL ================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    height: 100vh;
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    color: #fff;
+    overflow: hidden;
+}
+
+/* ================== NAVBAR ================== */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 60px;
+    position: relative;
+    z-index: 10;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.nav-links a {
+    margin-left: 30px;
+    text-decoration: none;
+    color: #fff;
+    font-weight: 400;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: #00eaff;
+}
+
+/* ================== HERO ================== */
+.hero {
+    display: flex;
+    height: calc(100vh - 80px);
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 80px;
+}
+
+.hero-text {
+    max-width: 550px;
+    animation: slideIn 1.2s ease-out;
+}
+
+.hero-text h1 {
+    font-size: 52px;
+    font-weight: 700;
+}
+
+.hero-text h1 span {
+    color: #00eaff;
+}
+
+.hero-text p {
+    margin-top: 20px;
+    font-size: 18px;
+    line-height: 1.6;
+    opacity: 0.9;
+}
+
+.hero-text button {
+    margin-top: 30px;
+    padding: 14px 32px;
+    border: none;
+    background: #00eaff;
+    color: #000;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.hero-text button:hover {
+    transform: scale(1.1);
+}
+
+/* ================== ANIMATED OBJECTS ================== */
+.animation-area {
+    position: relative;
+    width: 400px;
+    height: 400px;
+}
+
+/* Bouncing Ball */
+.ball {
+    width: 80px;
+    height: 80px;
+    background: radial-gradient(circle, #00eaff, #005f6a);
+    border-radius: 50%;
+    position: absolute;
+    bottom: 0;
+    animation: bounce 2s infinite ease-in-out;
+}
+
+/* Floating Cube */
+.cube {
+    width: 120px;
+    height: 120px;
+    background: linear-gradient(45deg, #ff6a00, #ffcc00);
+    position: absolute;
+    top: 50px;
+    right: 0;
+    animation: float 4s infinite ease-in-out;
+}
+
+/* Rotating Ring */
+.ring {
+    width: 160px;
+    height: 160px;
+    border: 6px solid #00eaff;
+    border-radius: 50%;
+    position: absolute;
+    top: 200px;
+    left: 80px;
+    animation: rotate 6s linear infinite;
+}
+
+/* ================== KEYFRAMES ================== */
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-180px);
+    }
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(40px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-80px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* ================== FOOTER ================== */
+.footer {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+    opacity: 0.7;
 }
 </style>
 </head>
+
 <body>
 
-<div class="info">
-<h1>Sandeep Dhanwate</h1>
-<p>Cloud & DevOps Engineer | CI/CD | Kubernetes | Terraform | AWS / Azure</p>
+<!-- NAVBAR -->
+<div class="navbar">
+    <div class="logo">DevOpsHub</div>
+    <div class="nav-links">
+        <a href="#">Home</a>
+        <a href="#">Projects</a>
+        <a href="#">CI/CD</a>
+        <a href="#">Contact</a>
+    </div>
 </div>
 
-<div id="earthContainer"></div>
+<!-- HERO SECTION -->
+<div class="hero">
+    <div class="hero-text">
+        <h1>Build. Deploy. <span>Automate.</span></h1>
+        <p>
+            A modern DevOps platform integrating CI/CD pipelines, cloud automation,
+            container orchestration, and monitoring — all in one place.
+        </p>
+        <button>Get Started</button>
+    </div>
 
-<script>
-// Scene setup
-const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(40, window.innerWidth/window.innerHeight, 0.1, 1000);
-camera.position.z = 4;
+    <!-- ANIMATION AREA -->
+    <div class="animation-area">
+        <div class="ball"></div>
+        <div class="cube"></div>
+        <div class="ring"></div>
+    </div>
+</div>
 
-// Renderer
-const renderer = new THREE.WebGLRenderer({antialias:true});
-renderer.setSize(window.innerWidth, window.innerHeight);
-document.getElementById('earthContainer').appendChild(renderer.domElement);
+<!-- FOOTER -->
+<div class="footer">
+    © 2025 DevOpsHub | Powered by JSP & Tomcat
+</div>
 
-// Earth texture
-const textureLoader = new THREE.TextureLoader();
-const earthGeometry = new THREE.SphereGeometry(1,64,64);
-const earthMaterial = new THREE.MeshPhongMaterial({
-map: textureLoader.load('https://raw.githubusercontent.com/VirtualGlobes/earth-texture/main/earth_daymap.jpg'),
-specular: new THREE.Color('grey'),
-shininess:5
-});
-const earth = new THREE.Mesh(earthGeometry, earthMaterial);
-scene.add(earth);
-
-// Clouds
-const cloudGeometry = new THREE.SphereGeometry(1.01,64,64);
-const cloudMaterial = new THREE.MeshPhongMaterial({
-map: textureLoader.load('https://raw.githubusercontent.com/VirtualGlobes/earth-texture/main/earth_clouds.png'),
-transparent:true,
-opacity:0.5
-});
-const clouds = new THREE.Mesh(cloudGeometry, cloudMaterial);
-scene.add(clouds);
-
-// Lights
-const ambientLight = new THREE.AmbientLight(0xffffff,0.5);
-scene.add(ambientLight);
-const directionalLight = new THREE.DirectionalLight(0xffffff,1);
-directionalLight.position.set(5,3,5);
-scene.add(directionalLight);
-
-// Satellites (DevOps tools)
-const tools = ["GIT","JENKINS","DOCKER","K8S","TERRAFORM","PROM","GRAFANA"];
-const satellites = [];
-const satGeometry = new THREE.SphereGeometry(0.05,16,16);
-const satMaterial = new THREE.MeshPhongMaterial({color:0x00eaff, shininess:10});
-tools.forEach((tool,i)=>{
-    const sat = new THREE.Mesh(satGeometry, satMaterial);
-    const angle = (i / tools.length) * Math.PI*2;
-    sat.userData = {angle:angle, radius:2, tool:tool};
-    sat.position.set(Math.cos(angle)*2, Math.sin(angle)*2, 0);
-    satellites.push(sat);
-    scene.add(sat);
-});
-
-// Animation
-function animate(){
-    requestAnimationFrame(animate);
-    earth.rotation.y += 0.0015;
-    clouds.rotation.y += 0.002;
-
-    satellites.forEach(sat=>{
-        sat.userData.angle += 0.003; // orbit speed
-        sat.position.x = Math.cos(sat.userData.angle)*sat.userData.radius;
-        sat.position.y = Math.sin(sat.userData.angle)*sat.userData.radius;
-    });
-
-    renderer.render(scene, camera);
-}
-animate();
-
-// Handle resize
-window.addEventListener('resize',()=>{
-    camera.aspect = window.innerWidth/window.innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-});
-</script>
 </body>
 </html>
 
