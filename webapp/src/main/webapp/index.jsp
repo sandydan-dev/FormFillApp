@@ -15,34 +15,30 @@
 --accent:#00eaff;
 --glow:0 0 25px rgba(0,234,255,.4);
 }
-.light{
---bg:#f4f7fb;
---card:rgba(255,255,255,0.7);
---text:#020617;
---accent:#005eff;
-}
 
-/* ================= BASE ================= */
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
 font-family:Poppins,sans-serif;
-background:linear-gradient(120deg,#020617,#061a2f,#020617);
-background-size:400% 400%;
-animation:bgMove 18s ease infinite;
+background:radial-gradient(circle at top,#081a33,#020617);
 color:var(--text);
 overflow-x:hidden;
-transition:.4s;
 }
-@keyframes bgMove{
-50%{background-position:100% 50%}
+
+/* ================= STARS ================= */
+.stars span{
+position:fixed;
+width:2px;height:2px;
+background:#fff;
+opacity:.7;
+animation:twinkle 4s infinite alternate;
 }
+@keyframes twinkle{to{opacity:.2}}
 
 /* ================= HEADER ================= */
 header{
 position:fixed;
-top:0;
-width:100%;
+top:0;width:100%;
 padding:18px 70px;
 display:flex;
 justify-content:space-between;
@@ -51,46 +47,14 @@ background:var(--card);
 backdrop-filter:blur(14px);
 z-index:100;
 }
-.logo{
-font-size:22px;
-font-weight:700;
-color:var(--accent);
-text-shadow:var(--glow);
-}
+.logo{font-size:22px;font-weight:700;color:var(--accent)}
 nav a{
 margin-left:26px;
-color:var(--text);
+color:#fff;
 text-decoration:none;
 opacity:.7;
-font-size:15px;
 }
-nav a.active,nav a:hover{
-opacity:1;
-color:var(--accent);
-}
-.toggle{cursor:pointer}
-
-/* ================= SECTIONS ================= */
-section{
-padding:120px 80px;
-opacity:0;
-transform:translateY(60px);
-transition:1s;
-}
-section.show{opacity:1;transform:none}
-h2{
-text-align:center;
-margin-bottom:35px;
-font-size:38px;
-}
-.divider{
-width:90px;
-height:4px;
-background:var(--accent);
-margin:10px auto 40px;
-box-shadow:var(--glow);
-border-radius:10px;
-}
+nav a:hover{opacity:1;color:var(--accent)}
 
 /* ================= HERO ================= */
 #home{
@@ -98,58 +62,113 @@ min-height:100vh;
 display:flex;
 align-items:center;
 justify-content:space-between;
-padding-top:160px;
+padding:160px 80px 80px;
 }
-.hero-left{width:48%}
-.hero-left h1{
-font-size:54px;
-}
+.hero-left{width:45%}
+.hero-left h1{font-size:54px}
 .hero-left span{color:var(--accent)}
-.hero-left p{
-margin:20px 0;
-font-size:18px;
-opacity:.85;
-}
-.type{
-color:var(--accent);
-font-weight:500;
-}
+.hero-left p{margin:20px 0;font-size:18px;opacity:.85}
 
-/* ================= PIPELINE ================= */
-.hero-right{width:45%}
-.pipeline{
+/* ================= SPACE SYSTEM ================= */
+.hero-right{
+width:45%;
 display:flex;
-flex-direction:column;
+justify-content:center;
 align-items:center;
-}
-.stage{
-width:100%;
-padding:18px;
-margin:10px 0;
-background:var(--card);
-border-radius:18px;
-backdrop-filter:blur(14px);
-box-shadow:0 0 25px rgba(0,234,255,.18);
 position:relative;
-overflow:hidden;
-animation:float 4s ease-in-out infinite;
 }
-.stage::after{
-content:"";
-position:absolute;
-left:-30%;
-top:0;
-width:30%;
-height:100%;
-background:linear-gradient(120deg,transparent,var(--accent),transparent);
-animation:scan 3s linear infinite;
-opacity:.25;
-}
-@keyframes scan{to{left:130%}}
-.stage:nth-child(even){animation-delay:2s}
-@keyframes float{50%{transform:translateY(-10px)}}
 
-/* ================= CARD ================= */
+.space{
+position:relative;
+width:420px;
+height:420px;
+}
+
+/* Earth */
+.earth{
+width:180px;height:180px;
+border-radius:50%;
+background:radial-gradient(circle at 30% 30%,#2bbcff,#002244);
+position:absolute;
+top:50%;left:50%;
+transform:translate(-50%,-50%);
+box-shadow:inset -25px -25px 50px rgba(0,0,0,.6),
+0 0 40px rgba(0,234,255,.5);
+animation:rotateEarth 25s linear infinite;
+}
+@keyframes rotateEarth{
+to{transform:translate(-50%,-50%) rotate(360deg)}
+}
+
+/* Cloud regions */
+.region{
+position:absolute;
+width:8px;height:8px;
+background:var(--accent);
+border-radius:50%;
+box-shadow:0 0 12px var(--accent);
+}
+.r1{top:45%;left:60%}
+.r2{top:55%;left:40%}
+.r3{top:35%;left:50%}
+
+/* Orbits */
+.orbit{
+position:absolute;
+top:50%;left:50%;
+border:1px dashed rgba(255,255,255,.2);
+border-radius:50%;
+transform:translate(-50%,-50%);
+}
+.o1{width:260px;height:260px;animation:spin 14s linear infinite}
+.o2{width:320px;height:320px;animation:spin 20s linear infinite reverse}
+.o3{width:380px;height:380px;animation:spin 28s linear infinite}
+@keyframes spin{
+to{transform:translate(-50%,-50%) rotate(360deg)}
+}
+
+/* Satellites */
+.satellite{
+width:22px;height:22px;
+background:var(--accent);
+border-radius:6px;
+position:absolute;
+top:-12px;left:50%;
+transform:translateX(-50%);
+box-shadow:0 0 15px var(--accent);
+font-size:10px;
+display:flex;
+align-items:center;
+justify-content:center;
+color:#000;
+font-weight:700;
+}
+
+/* ================= TERMINAL ================= */
+.terminal{
+margin-top:40px;
+background:#000;
+color:#00ff88;
+font-family:monospace;
+padding:18px;
+border-radius:12px;
+font-size:14px;
+box-shadow:0 0 30px rgba(0,0,0,.8);
+max-width:420px;
+}
+.cursor{
+display:inline-block;
+width:8px;
+background:#00ff88;
+animation:blink 1s infinite;
+}
+@keyframes blink{50%{opacity:0}}
+
+/* ================= SECTIONS ================= */
+section{
+padding:120px 80px;
+text-align:center;
+}
 .card{
 max-width:900px;
 margin:auto;
@@ -159,124 +178,102 @@ border-radius:25px;
 backdrop-filter:blur(14px);
 }
 
-/* ================= TOOLS ================= */
-.tools{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-gap:25px;
-}
-.tool{
-background:var(--card);
-padding:25px;
-border-radius:18px;
-transition:.4s;
-}
-.tool:hover{
-transform:translateY(-12px);
-background:rgba(0,234,255,.15);
-box-shadow:var(--glow);
-}
-
 /* ================= FOOTER ================= */
 footer{
 padding:45px;
 text-align:center;
 background:var(--card);
+margin-top:80px;
 }
 footer a{
 color:var(--accent);
 text-decoration:none;
 margin:0 12px;
-font-weight:500;
-}
-
-/* ================= RESPONSIVE ================= */
-@media(max-width:900px){
-#home{flex-direction:column;text-align:center}
-.hero-left,.hero-right{width:100%}
 }
 </style>
 </head>
 
 <body>
 
+<!-- STARS -->
+<div class="stars">
+<%
+for(int i=0;i<140;i++){
+%>
+<span style="top:<%=Math.random()*100%>%;left:<%=Math.random()*100%>%;"></span>
+<% } %>
+</div>
+
 <header>
 <div class="logo">SD</div>
 <nav>
-<a href="#home" class="active">Home</a>
+<a href="#home">Home</a>
 <a href="#about">About</a>
 <a href="#project">Projects</a>
 <a href="#tools">DevOps Tools</a>
 <a href="#contact">Contact</a>
 </nav>
-<div class="toggle" onclick="toggleTheme()">🌗</div>
 </header>
 
 <!-- HERO -->
-<section id="home" class="show">
+<section id="home">
 <div class="hero-left">
 <h1>Sandeep <span>Dhanwate</span></h1>
-<p class="type" id="typing"></p>
 <p>
-Cloud & DevOps Engineer focused on building reliable,
-automated CI/CD pipelines and scalable cloud infrastructure.
+Cloud & DevOps Engineer building globally scalable,
+automated CI/CD pipelines and cloud infrastructure.
 </p>
+
+<div class="terminal" id="terminal">
+$ git push origin main<br>
+$ terraform apply<br>
+$ kubectl rollout status deploy/app<br>
+<span class="cursor"></span>
+</div>
 </div>
 
 <div class="hero-right">
-<div class="pipeline">
-<div class="stage">📁 Git – Source Control</div>
-<div class="stage">⚙️ Jenkins – CI Automation</div>
-<div class="stage">🔧 Maven & SonarQube – Build & Quality</div>
-<div class="stage">🐳 Docker – Containerization</div>
-<div class="stage">☸️ Kubernetes – Orchestration</div>
+<div class="space">
+<div class="earth">
+<div class="region r1"></div>
+<div class="region r2"></div>
+<div class="region r3"></div>
+</div>
+
+<div class="orbit o1"><div class="satellite">CI</div></div>
+<div class="orbit o2"><div class="satellite">CD</div></div>
+<div class="orbit o3"><div class="satellite">MON</div></div>
 </div>
 </div>
 </section>
 
-<!-- ABOUT -->
 <section id="about">
 <h2>About Me</h2>
-<div class="divider"></div>
 <div class="card">
-Fresher to intermediate Cloud & DevOps Engineer with strong hands-on
-experience in CI/CD automation, Infrastructure as Code, monitoring,
-and DevSecOps practices. I believe in automation-first engineering.
+Automation-focused Cloud & DevOps Engineer with hands-on experience
+in CI/CD pipelines, Infrastructure as Code, Kubernetes and monitoring.
 </div>
 </section>
 
-<!-- PROJECT -->
 <section id="project">
-<h2>Project Experience</h2>
-<div class="divider"></div>
+<h2>Project</h2>
 <div class="card">
-<b>End-to-End CI/CD Automation on Cloud</b><br><br>
-• Fully automated pipeline from code commit to Kubernetes deployment<br>
-• Jenkins integrated with Maven, SonarQube, Docker & JFrog<br>
-• Infrastructure provisioned using Terraform & Ansible<br>
-• Observability using Prometheus & Grafana
+End-to-End CI/CD pipeline using Git, Jenkins, Maven, SonarQube,
+Docker, Kubernetes, Terraform, Ansible and Prometheus.
 </div>
 </section>
 
-<!-- TOOLS -->
 <section id="tools">
 <h2>DevOps Tools</h2>
-<div class="divider"></div>
-<div class="tools">
-<div class="tool"><b>Linux & Shell</b><br>Automation & system management</div>
-<div class="tool"><b>AWS & Azure</b><br>Cloud infrastructure & services</div>
-<div class="tool"><b>Git & Jenkins</b><br>CI/CD pipeline automation</div>
-<div class="tool"><b>Docker & Kubernetes</b><br>Containerization & orchestration</div>
-<div class="tool"><b>Terraform & Ansible</b><br>Infrastructure as Code</div>
-<div class="tool"><b>Prometheus & Grafana</b><br>Monitoring & observability</div>
+<div class="card">
+Linux • AWS • Azure • Git • Jenkins • Docker • Kubernetes • Terraform •
+Ansible • Prometheus • Grafana • DevSecOps
 </div>
 </section>
 
-<!-- CONTACT -->
 <section id="contact">
 <h2>Contact</h2>
-<div class="divider"></div>
-<div class="card" style="text-align:center">
+<div class="card">
 <p>Email: sandydan.dev@gmail.com</p><br>
 <a href="https://github.com/sandydan-dev" target="_blank">GitHub</a> |
 <a href="https://www.linkedin.com/in/sandeep-dhanwate-2841332b8" target="_blank">LinkedIn</a> |
@@ -285,44 +282,8 @@ and DevSecOps practices. I believe in automation-first engineering.
 </section>
 
 <footer>
-© 2025 Sandeep Dhanwate • Cloud & DevOps Engineer • Automation First
+© 2025 Sandeep Dhanwate • Cloud & DevOps Engineer • Global Automation
 </footer>
-
-<script>
-/* Typing effect */
-const text="Cloud & DevOps Engineer | CI/CD • Cloud • Kubernetes";
-let i=0;
-setInterval(()=>{
-document.getElementById("typing").innerText=text.slice(0,i++);
-if(i>text.length)i=0;
-},120);
-
-/* Scroll reveal */
-const sections=document.querySelectorAll("section");
-window.addEventListener("scroll",()=>{
-sections.forEach(sec=>{
-if(sec.getBoundingClientRect().top<window.innerHeight-120){
-sec.classList.add("show");
-}
-});
-});
-
-/* Active menu */
-const links=document.querySelectorAll("nav a");
-window.addEventListener("scroll",()=>{
-sections.forEach((sec,i)=>{
-if(sec.offsetTop-150<=scrollY){
-links.forEach(l=>l.classList.remove("active"));
-links[i].classList.add("active");
-}
-});
-});
-
-/* Theme toggle */
-function toggleTheme(){
-document.body.classList.toggle("light");
-}
-</script>
 
 </body>
 </html>
