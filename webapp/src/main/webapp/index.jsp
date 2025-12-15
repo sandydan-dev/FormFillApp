@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
-<%-- DevOps Engineer Portfolio Home Page --%>
+<%-- DevOps Engineer Portfolio Home Page (uses external CSS) --%>
 <%
-    // Optional: override these by setting request attributes (e.g., request.setAttribute("name","Alice") in a servlet)
+    // Optional: override these by setting request attributes (e.g., request.setAttribute("fullName","Alice") in a servlet)
     String fullName = request.getAttribute("fullName") != null ? (String) request.getAttribute("fullName") : "Your Name";
     String title = request.getAttribute("title") != null ? (String) request.getAttribute("title") : "DevOps Engineer";
     String location = request.getAttribute("location") != null ? (String) request.getAttribute("location") : "Remote / City, Country";
@@ -23,50 +23,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
         integrity="sha512-yH6fYkK0z6qf1kQm6V0Jw1pJzv2uQ6g1xw2qKf6B7bX9t3pVxH9R2YJ6h4z5P2sT" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-  <style>
-    :root {
-      --accent: #06b6d4;
-      --dark: #0f172a;
-    }
-    body {
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
-      color: #0b1220;
-    }
-    .hero {
-      padding: 4rem 0;
-      background: linear-gradient(90deg, rgba(6,182,212,0.06), rgba(99,102,241,0.03));
-      border-radius: .75rem;
-    }
-    .skill-badge {
-      background: rgba(15,23,42,0.06);
-      border-radius: .5rem;
-      padding: .35rem .6rem;
-      margin: .2rem;
-      font-weight: 600;
-      font-size: .9rem;
-    }
-    .project-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 10px 25px rgba(2,6,23,0.08);
-    }
-    .chip {
-      background: rgba(6,182,212,0.12);
-      color: var(--accent);
-      padding: .25rem .5rem;
-      border-radius: .35rem;
-      font-weight:600;
-      font-size:.85rem;
-    }
-    footer {
-      margin-top: 3rem;
-      padding: 2rem 0;
-      color: #475569;
-    }
-    @media (max-width: 575px) {
-      .hero { padding: 2rem 1rem; }
-    }
-  </style>
+  <!-- Custom stylesheet (place this file at webapp/assets/css/styles.css) -->
+  <link rel="stylesheet" href="/assets/css/styles.css">
 </head>
 <body>
   <div class="container py-4">
@@ -101,9 +59,9 @@
             </div>
           </div>
           <div class="col-md-4 text-center">
-            <!-- Placeholder avatar -->
-            <div style="width:160px;height:160px;margin:auto;border-radius:12px;overflow:hidden;background:linear-gradient(135deg,#06b6d4,#6366f1);display:flex;align-items:center;justify-content:center;">
-              <h2 style="color:white;font-weight:700;">SD</h2>
+            <!-- Avatar placeholder -->
+            <div class="avatar-placeholder">
+              <h2 class="avatar-initials">SD</h2>
             </div>
             <div class="mt-3 text-muted small">
               <div><i class="fa-solid fa-envelope me-2"></i><a href="mailto:<%= email %>"><%= email %></a></div>
