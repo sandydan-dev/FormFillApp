@@ -1,130 +1,234 @@
-<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Premium Registration</title>
+<meta charset="UTF-8">
+<title>DevOps Home</title>
 
-    <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-    <style>
-        body {
-            background: linear-gradient(135deg, #001a33, #003366, #004080);
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: "Poppins", sans-serif;
-        }
+<style>
+/* ================== GLOBAL ================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        .card-box {
-            width: 380px;
-            padding: 25px;
-            background: rgba(255, 255, 255, 0.15);
-            border-radius: 15px;
-            color: white;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 0 20px rgba(255,255,255,0.2);
-            position: relative;
-        }
+body {
+    font-family: 'Poppins', sans-serif;
+    height: 100vh;
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    color: #fff;
+    overflow: hidden;
+}
 
-        .card-box h2 {
-            text-align: center;
-            margin-bottom: 20px;
-            color: #ffc107;
-        }
+/* ================== NAVBAR ================== */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 60px;
+    position: relative;
+    z-index: 10;
+}
 
-        /* Celebration Balloons */
-        #celebrate {
-            display: none;
-            font-size: 45px;
-            text-align: center;
-            margin-bottom: 10px;
-            animation: float 2s ease-out;
-        }
+.logo {
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
 
-        @keyframes float {
-            0% { transform: translateY(40px); opacity: 0; }
-            100% { transform: translateY(0); opacity: 1; }
-        }
+.nav-links a {
+    margin-left: 30px;
+    text-decoration: none;
+    color: #fff;
+    font-weight: 400;
+    transition: 0.3s;
+}
 
-        input, select {
-            height: 42px;
-        }
+.nav-links a:hover {
+    color: #00eaff;
+}
 
-        .submit-btn {
-            height: 45px;
-            font-weight: bold;
-        }
-    </style>
+/* ================== HERO ================== */
+.hero {
+    display: flex;
+    height: calc(100vh - 80px);
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 80px;
+}
 
-    <script>
-        function showCelebration(event) {
-            event.preventDefault();
+.hero-text {
+    max-width: 550px;
+    animation: slideIn 1.2s ease-out;
+}
 
-            document.getElementById("celebrate").style.display = "block";
+.hero-text h1 {
+    font-size: 52px;
+    font-weight: 700;
+}
 
-            setTimeout(() => {
-                event.target.submit();
-            }, 1500);
-        }
+.hero-text h1 span {
+    color: #00eaff;
+}
 
-        function previewImage(event) {
-            const img = document.getElementById("preview");
-            img.src = URL.createObjectURL(event.target.files[0]);
-        }
-    </script>
+.hero-text p {
+    margin-top: 20px;
+    font-size: 18px;
+    line-height: 1.6;
+    opacity: 0.9;
+}
+
+.hero-text button {
+    margin-top: 30px;
+    padding: 14px 32px;
+    border: none;
+    background: #00eaff;
+    color: #000;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.hero-text button:hover {
+    transform: scale(1.1);
+}
+
+/* ================== ANIMATED OBJECTS ================== */
+.animation-area {
+    position: relative;
+    width: 400px;
+    height: 400px;
+}
+
+/* Bouncing Ball */
+.ball {
+    width: 80px;
+    height: 80px;
+    background: radial-gradient(circle, #00eaff, #005f6a);
+    border-radius: 50%;
+    position: absolute;
+    bottom: 0;
+    animation: bounce 2s infinite ease-in-out;
+}
+
+/* Floating Cube */
+.cube {
+    width: 120px;
+    height: 120px;
+    background: linear-gradient(45deg, #ff6a00, #ffcc00);
+    position: absolute;
+    top: 50px;
+    right: 0;
+    animation: float 4s infinite ease-in-out;
+}
+
+/* Rotating Ring */
+.ring {
+    width: 160px;
+    height: 160px;
+    border: 6px solid #00eaff;
+    border-radius: 50%;
+    position: absolute;
+    top: 200px;
+    left: 80px;
+    animation: rotate 6s linear infinite;
+}
+
+/* ================== KEYFRAMES ================== */
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-180px);
+    }
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(40px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-80px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* ================== FOOTER ================== */
+.footer {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+    opacity: 0.7;
+}
+</style>
 </head>
 
 <body>
 
-<div class="card-box">
+<!-- NAVBAR -->
+<div class="navbar">
+    <div class="logo">DevOpsHub</div>
+    <div class="nav-links">
+        <a href="#">Home</a>
+        <a href="#">Projects</a>
+        <a href="#">CI/CD</a>
+        <a href="#">Contact</a>
+    </div>
+</div>
 
-    <!-- Celebration -->
-    <div id="celebrate">🎉🎈 Registration Successful 🎈🎉</div>
-
-    <h2>Fill All Form</h2>
-
-    <!-- Profile Image -->
-    <div class="text-center">
-        <img id="preview" src="https://via.placeholder.com/90" class="rounded-circle border border-warning mb-3" width="90" height="90">
+<!-- HERO SECTION -->
+<div class="hero">
+    <div class="hero-text">
+        <h1>Build. Deploy. <span>Automate.</span></h1>
+        <p>
+            A modern DevOps platform integrating CI/CD pipelines, cloud automation,
+            container orchestration, and monitoring — all in one place.
+        </p>
+        <button>Get Started</button>
     </div>
 
-   
+    <!-- ANIMATION AREA -->
+    <div class="animation-area">
+        <div class="ball"></div>
+        <div class="cube"></div>
+        <div class="ring"></div>
+    </div>
+</div>
 
-    <form method="post" onsubmit="showCelebration(event)">
-
-        <div class="mb-3">
-            <input type="text" name="name" class="form-control" placeholder="Full Name" required>
-        </div>
-
-        <div class="mb-3">
-            <input type="email" name="email" class="form-control" placeholder="Email" required>
-        </div>
-
-        <div class="mb-3">
-            <input type="text" name="phone" class="form-control" placeholder="Phone Number" required>
-        </div>
-
-        <div class="mb-3">
-            <select name="gender" class="form-control" required>
-                <option value="">Select Gender</option>
-                <option>Male</option>
-                <option>Female</option>
-                <option>Other</option>
-		<option>Trans</option>
-            </select>
-        </div>
-
-        <div class="mb-3">
-            <input type="password" name="password" class="form-control" placeholder="Password" required>
-        </div>
-
-        <button class="btn btn-warning submit-btn w-100">Register</button>
-
-    </form>
-
+<!-- FOOTER -->
+<div class="footer">
+    © 2025 DevOpsHub | Powered by JSP & Tomcat
 </div>
 
 </body>
