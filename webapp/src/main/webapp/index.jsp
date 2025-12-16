@@ -4,232 +4,311 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>DevOps Home</title>
+<title>DevOps Portfolio</title>
 
-<!-- Google Font -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
-/* ================== GLOBAL ================== */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/* ================= GLOBAL ================= */
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+    font-family:'Poppins',sans-serif;
+    background:#0b1622;
+    color:#fff;
+    overflow-x:hidden;
 }
 
-body {
-    font-family: 'Poppins', sans-serif;
-    height: 100vh;
-    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-    color: #fff;
-    overflow: hidden;
+/* ================= BACKGROUND ANIMATION ================= */
+.bg span{
+    position:fixed;
+    width:20px;height:20px;
+    background:#00eaff;
+    opacity:.15;
+    border-radius:50%;
+    animation:floatBg 25s linear infinite;
+}
+.bg span:nth-child(1){left:10%;animation-duration:20s}
+.bg span:nth-child(2){left:30%;animation-duration:26s}
+.bg span:nth-child(3){left:60%;animation-duration:18s}
+.bg span:nth-child(4){left:80%;animation-duration:30s}
+@keyframes floatBg{
+    from{transform:translateY(100vh)}
+    to{transform:translateY(-10vh)}
 }
 
-/* ================== NAVBAR ================== */
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    padding: 20px 60px;
-    position: relative;
-    z-index: 10;
+/* ================= NAV ================= */
+nav{
+    position:fixed;
+    width:100%;
+    padding:20px 80px;
+    display:flex;
+    justify-content:space-between;
+    background:rgba(0,0,0,.4);
+    backdrop-filter:blur(10px);
+    z-index:99;
+}
+nav a{
+    color:#fff;
+    margin-left:30px;
+    text-decoration:none;
+}
+nav a:hover{color:#00eaff}
+
+/* ================= HERO ================= */
+.hero{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    padding:0 80px;
+}
+.hero-text{
+    width:50%;
+    animation:slideLeft 1.2s ease;
+}
+.hero-text h1{
+    font-size:56px;
+}
+.hero-text span{color:#00eaff}
+.hero-text p{
+    margin:25px 0;
+    opacity:.9;
+}
+.hero-text button{
+    padding:15px 40px;
+    border:none;
+    border-radius:40px;
+    background:#00eaff;
+    font-weight:600;
+    cursor:pointer;
+    transition:.4s;
+}
+.hero-text button:hover{transform:scale(1.15)}
+
+.hero-anim{
+    width:50%;
+    position:relative;
+    height:400px;
+}
+.server,.cloud,.gear{
+    position:absolute;
+    animation:float 4s ease-in-out infinite;
+}
+.server{
+    width:120px;height:160px;
+    background:#00eaff;
+    border-radius:10px;
+    left:120px;top:80px;
+}
+.cloud{
+    width:180px;height:100px;
+    border-radius:50px;
+    background:#fff;
+    opacity:.8;
+    top:20px;right:80px;
+}
+.gear{
+    width:90px;height:90px;
+    border:10px solid #00eaff;
+    border-radius:50%;
+    bottom:40px;right:120px;
+    animation:rotate 6s linear infinite;
 }
 
-.logo {
-    font-size: 24px;
-    font-weight: 700;
-    letter-spacing: 1px;
+/* ================= SECTIONS ================= */
+section{
+    padding:100px 12%;
+}
+h2{
+    text-align:center;
+    font-size:40px;
+    margin-bottom:40px;
+    color:#00eaff;
 }
 
-.nav-links a {
-    margin-left: 30px;
-    text-decoration: none;
-    color: #fff;
-    font-weight: 400;
-    transition: 0.3s;
+/* ================= ABOUT ================= */
+.about{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:50px;
+}
+.about div{
+    background:rgba(255,255,255,.05);
+    padding:40px;
+    border-radius:25px;
+    transition:.4s;
+}
+.about div:hover{transform:translateY(-15px)}
+
+/* ================= PROJECTS ================= */
+.projects{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:30px;
+}
+.project{
+    padding:35px;
+    border-radius:25px;
+    background:linear-gradient(145deg,#112233,#0b1622);
+    transition:.4s;
+}
+.project:hover{
+    transform:scale(1.08);
+    box-shadow:0 0 35px #00eaff;
 }
 
-.nav-links a:hover {
-    color: #00eaff;
+/* ================= TOOLS ================= */
+.tools{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+    gap:25px;
+}
+.tool{
+    text-align:center;
+    padding:25px;
+    border-radius:20px;
+    background:rgba(0,234,255,.12);
+    animation:pulse 3s infinite;
 }
 
-/* ================== HERO ================== */
-.hero {
-    display: flex;
-    height: calc(100vh - 80px);
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 80px;
+/* ================= PIPELINE ================= */
+.pipeline{
+    display:flex;
+    justify-content:center;
+    gap:25px;
+    flex-wrap:wrap;
+}
+.step{
+    padding:20px 30px;
+    background:#00eaff;
+    color:#000;
+    border-radius:30px;
+    font-weight:600;
+    animation:slideUp 1s ease forwards;
 }
 
-.hero-text {
-    max-width: 550px;
-    animation: slideIn 1.2s ease-out;
+/* ================= CONTACT ================= */
+.contact{
+    text-align:center;
+}
+.contact button{
+    margin-top:25px;
+    padding:18px 50px;
+    font-size:18px;
+    border:none;
+    border-radius:50px;
+    background:#00eaff;
+    cursor:pointer;
 }
 
-.hero-text h1 {
-    font-size: 52px;
-    font-weight: 700;
+/* ================= FOOTER ================= */
+footer{
+    padding:30px;
+    text-align:center;
+    background:#000;
 }
 
-.hero-text h1 span {
-    color: #00eaff;
+/* ================= ANIMATIONS ================= */
+@keyframes slideLeft{
+    from{opacity:0;transform:translateX(-100px)}
+    to{opacity:1;transform:none}
 }
-
-.hero-text p {
-    margin-top: 20px;
-    font-size: 18px;
-    line-height: 1.6;
-    opacity: 0.9;
+@keyframes slideUp{
+    from{opacity:0;transform:translateY(80px)}
+    to{opacity:1;transform:none}
 }
-
-.hero-text button {
-    margin-top: 30px;
-    padding: 14px 32px;
-    border: none;
-    background: #00eaff;
-    color: #000;
-    font-size: 16px;
-    font-weight: 600;
-    border-radius: 30px;
-    cursor: pointer;
-    transition: 0.3s;
+@keyframes float{
+    50%{transform:translateY(-30px)}
 }
-
-.hero-text button:hover {
-    transform: scale(1.1);
+@keyframes rotate{
+    to{transform:rotate(360deg)}
 }
-
-/* ================== ANIMATED OBJECTS ================== */
-.animation-area {
-    position: relative;
-    width: 400px;
-    height: 400px;
-}
-
-/* Bouncing Ball */
-.ball {
-    width: 80px;
-    height: 80px;
-    background: radial-gradient(circle, #00eaff, #005f6a);
-    border-radius: 50%;
-    position: absolute;
-    bottom: 0;
-    animation: bounce 2s infinite ease-in-out;
-}
-
-/* Floating Cube */
-.cube {
-    width: 120px;
-    height: 120px;
-    background: linear-gradient(45deg, #ff6a00, #ffcc00);
-    position: absolute;
-    top: 50px;
-    right: 0;
-    animation: float 4s infinite ease-in-out;
-}
-
-/* Rotating Ring */
-.ring {
-    width: 160px;
-    height: 160px;
-    border: 6px solid #00eaff;
-    border-radius: 50%;
-    position: absolute;
-    top: 200px;
-    left: 80px;
-    animation: rotate 6s linear infinite;
-}
-
-/* ================== KEYFRAMES ================== */
-@keyframes bounce {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-180px);
-    }
-}
-
-@keyframes float {
-    0% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(40px);
-    }
-    100% {
-        transform: translateY(0);
-    }
-}
-
-@keyframes rotate {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-@keyframes slideIn {
-    from {
-        opacity: 0;
-        transform: translateX(-80px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-/* ================== FOOTER ================== */
-.footer {
-    position: absolute;
-    bottom: 20px;
-    width: 100%;
-    text-align: center;
-    font-size: 14px;
-    opacity: 0.7;
+@keyframes pulse{
+    50%{transform:scale(1.08)}
 }
 </style>
 </head>
 
 <body>
 
-<!-- NAVBAR -->
-<div class="navbar">
-    <div class="logo">DevOpsHub</div>
-    <div class="nav-links">
-        <a href="#">Home</a>
-        <a href="#">Projects</a>
-        <a href="#">CI/CD</a>
-        <a href="#">Contact</a>
-    </div>
+<div class="bg">
+    <span></span><span></span><span></span><span></span>
 </div>
 
-<!-- HERO SECTION -->
+<nav>
+    <strong>DevOps Portfolio</strong>
+    <div>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#tools">Tools</a>
+        <a href="#contact">Contact</a>
+    </div>
+</nav>
+
 <div class="hero">
     <div class="hero-text">
-        <h1> DevOps Engineer.SRE. Build. Deployment. <span>Automate.</span></h1>
-        <p>
-            A modern DevOps platform integrating CI/CD pipelines, cloud automation,
-            container orchestration, and monitoring — all in one place.
-        </p>
-        <button>Get Started</button>
+        <h1>DevOps Engineer <span>& Automation</span></h1>
+        <p>CI/CD | Cloud | Kubernetes | Monitoring | Infrastructure as Code</p>
+        <button>View My Work</button>
     </div>
 
-    <!-- ANIMATION AREA -->
-    <div class="animation-area">
-        <div class="ball"></div>
-        <div class="cube"></div>
-        <div class="ring"></div>
+    <div class="hero-anim">
+        <div class="server"></div>
+        <div class="cloud"></div>
+        <div class="gear"></div>
     </div>
 </div>
 
-<!-- FOOTER -->
-<div class="footer">
-    © 2025 DevOpsHub | Powered by JSP & Tomcat
+<section id="about">
+<h2>About Me</h2>
+<div class="about">
+    <div>🚀 Passionate DevOps Engineer automating deployments and scaling cloud systems.</div>
+    <div>⚙️ Strong in CI/CD, AWS, Kubernetes, Terraform & Monitoring.</div>
 </div>
+</section>
+
+<section id="projects">
+<h2>Projects</h2>
+<div class="projects">
+    <div class="project">End-to-End CI/CD with Jenkins & Kubernetes</div>
+    <div class="project">AWS Infrastructure using Terraform</div>
+    <div class="project">Monitoring with Prometheus & Grafana</div>
+    <div class="project">DevSecOps Pipeline with SonarQube</div>
+</div>
+</section>
+
+<section id="tools">
+<h2>DevOps Tools</h2>
+<div class="tools">
+    <div class="tool">AWS</div>
+    <div class="tool">Docker</div>
+    <div class="tool">Kubernetes</div>
+    <div class="tool">Terraform</div>
+    <div class="tool">Jenkins</div>
+    <div class="tool">Ansible</div>
+</div>
+</section>
+
+<section>
+<h2>CI/CD Flow</h2>
+<div class="pipeline">
+    <div class="step">Code</div>
+    <div class="step">Build</div>
+    <div class="step">Test</div>
+    <div class="step">Deploy</div>
+    <div class="step">Monitor</div>
+</div>
+</section>
+
+<section id="contact" class="contact">
+<h2>Let’s Work Together</h2>
+<p>Ready to build scalable & automated systems</p>
+<button>Contact Me</button>
+</section>
+
+<footer>
+© 2025 DevOps Portfolio | JSP • Tomcat • Cloud Native
+</footer>
 
 </body>
 </html>
