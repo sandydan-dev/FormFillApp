@@ -210,7 +210,7 @@ body {
 <!-- HERO SECTION -->
 <div class="hero">
     <div class="hero-text">
-        <h1> Sandeep DevOps. Build. Deploy. <span>Automate.</span></h1>
+        <h1> DevOps Engineer. Build. Deploy. <span>Automate.</span></h1>
         <p>
             A modern DevOps platform integrating CI/CD pipelines, cloud automation,
             container orchestration, and monitoring — all in one place.
